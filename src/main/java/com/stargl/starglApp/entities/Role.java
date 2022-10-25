@@ -15,12 +15,12 @@ import javax.persistence.*;
 public class Role {
 
     @Id
-    @OneToOne
+    @OneToMany
     @JsonBackReference
     private int id;
 
     @Column
-    private String status;
+    private String name;
 
 
 

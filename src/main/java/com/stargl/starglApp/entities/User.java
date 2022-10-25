@@ -30,11 +30,12 @@ public class User {
     private String password;
 
     @OneToMany
-    @JsonManagedReference(mappedBy = "user")
+    @JsonManagedReference(mappedBy = "user")  // ????????????
     private Set<Task> taskSet = new HashSet<>();
 
     @Column
-    @OneToOne(mappedBy = "role")
+    @ForeignKey  // ??????
+    @ManyToOne (mappedBy = "role")   // ??????????????
     private int role_id;
 
 
