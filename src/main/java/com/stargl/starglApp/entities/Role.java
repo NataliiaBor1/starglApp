@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Role")
@@ -15,12 +17,14 @@ import javax.persistence.*;
 public class Role {
 
     @Id
-    @OneToMany
-    @JsonBackReference
     private int id;
 
     @Column
     private String name;
+
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonBackReference
+    private Set<User> userSet = new HashSet<>();
 
 
 

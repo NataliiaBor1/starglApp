@@ -16,7 +16,7 @@ public class Task {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     @Column(nullable = false, length = 50)
     private String title;
@@ -24,13 +24,17 @@ public class Task {
     @Column(columnDefinition = "text")
     private String body;
 
-    @Column
-    private int assigner;
-
-    @Column
-    private int assignee;
-
-    @ManyToOne
-    @JsonBackReference
-    private User user;
+//    @ManyToOne
+//    @JsonBackReference
+////    @JoinColumn(name = "assigner")  // ???????????
+//    private User assigner;
+//
+//    @ManyToOne
+//    @JsonBackReference
+////    @JoinColumn(name = "assignee")
+//    private User assignee;         //?????????????
+//
+////    @ManyToOne
+////    @JsonBackReference
+////    private User user;  //????????????
 }

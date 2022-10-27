@@ -1,5 +1,6 @@
 package com.stargl.starglApp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column
     private String name;
@@ -29,16 +30,62 @@ public class User {
     @Column (nullable = false, length = 30)
     private String password;
 
-    @OneToMany
-    @JsonManagedReference(mappedBy = "user")  // ????????????
-    private Set<Task> taskSet = new HashSet<>();
+//    @OneToMany(mappedBy = "assignee", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @JsonManagedReference
+//    private Set<Task> taskSetAssignee = new HashSet<>();
+//
+//    @OneToMany(mappedBy = "assigner", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @JsonManagedReference
+//    private Set<Task> taskSetAssigner = new HashSet<>();
 
-    @Column
-    @ForeignKey  // ??????
-    @ManyToOne (mappedBy = "role")   // ??????????????
-    private int role_id;
+    @ManyToOne
+    @JsonBackReference
+    private Role role;
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+//    @Override
+//    public String toString() {  ?????
+//        return
+//    }
 
 
 }
