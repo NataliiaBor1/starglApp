@@ -26,7 +26,32 @@ public class Role {
     @JsonBackReference
     private Set<User> userSet = new HashSet<>();
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<User> getUserSet() {
+        return userSet;
+    }
+
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
+    }
+
+    public Role(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

@@ -30,13 +30,13 @@ public class User {
     @Column (nullable = false, length = 30)
     private String password;
 
-//    @OneToMany(mappedBy = "assignee", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @JsonManagedReference
-//    private Set<Task> taskSetAssignee = new HashSet<>();
-//
-//    @OneToMany(mappedBy = "assigner", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @JsonManagedReference
-//    private Set<Task> taskSetAssigner = new HashSet<>();
+    @OneToMany(mappedBy = "assignee", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonManagedReference
+    private Set<Task> taskSetAssignee = new HashSet<>();
+
+    @OneToMany(mappedBy = "assigner", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonManagedReference
+    private Set<Task> taskSetAssigner = new HashSet<>();
 
     @ManyToOne
     @JsonBackReference
@@ -80,6 +80,12 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public User(String name, String username, String password) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
     }
 
 //    @Override
