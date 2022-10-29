@@ -1,7 +1,13 @@
 package com.stargl.starglApp.services;
 
-import org.springframework.stereotype.Service;
+import com.stargl.starglApp.dtos.UserDto;
 
-@Service
-public class UserService {
+import javax.transaction.Transactional;
+import java.util.List;
+
+public interface UserService {
+    @Transactional
+    List<String> registerUser(UserDto userDto);
+
+    List<String> userLogin(UserDto userDto);
 }

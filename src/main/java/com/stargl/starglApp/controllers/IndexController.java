@@ -13,8 +13,6 @@ public class IndexController {
     @RequestMapping("/index")
     public List<Task> retrieveAllTasks () {
         return Arrays.asList(
-                new Task(1, "Wash dishes", "All dishes after lunch"),
-                new Task(1, "School homework", "All missing assignments")
         );
     }
 }

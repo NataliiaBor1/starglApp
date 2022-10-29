@@ -1,8 +1,22 @@
 package com.stargl.starglApp.services;
 
-import org.springframework.stereotype.Service;
+import com.stargl.starglApp.dtos.TaskDto;
 
-@Service
-public class TaskService {
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
+public interface TaskService {
+    @Transactional
+    List<String> addTask(TaskDto taskDto, Long userId);
+
+    @Transactional
+    void deleteTaskById(Long taskId);
+
+    @Transactional
+    void updateTaskById(TaskDto taskDto);
+
+    Optional<TaskDto> getTaskById(Long taskId);
+
+    List<TaskDto> getAllTasksByUserId(Long userId);
 }
