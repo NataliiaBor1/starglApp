@@ -17,7 +17,7 @@ public class TaskController {
     private TaskService taskService;
 
     @GetMapping("/user/{userId}")
-    public List<TaskDto> getNotesByUser(@PathVariable Long userId) {
+    public List<TaskDto> getTasksByUser(@PathVariable Long userId) {
         return taskService.getAllTasksByUserId(userId);
     }
 
