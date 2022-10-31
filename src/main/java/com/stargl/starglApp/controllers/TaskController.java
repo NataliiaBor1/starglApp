@@ -16,27 +16,27 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/user/{userId}")                           // 500 server error
     public List<TaskDto> getTasksByUser(@PathVariable Long userId) {
         return taskService.getAllTasksByUserId(userId);
     }
 
     @GetMapping("/{taskId}")
-    public Optional<TaskDto> getTaskById(@PathVariable Long taskId) {
+    public Optional<TaskDto> getTaskById(@PathVariable Long taskId) {  // work in Postman
         return taskService.getTaskById(taskId);
     }
 
-    @PostMapping("/user/{userId}")
+    @PostMapping("/user/{userId}")                              // work in Postman   title is not setting up
     public void addTask(@RequestBody TaskDto taskDto, @PathVariable Long userId) {
         taskService.addTask(taskDto, userId);
     }
 
-    @DeleteMapping("/{taskId}")
+    @DeleteMapping("/{taskId}")                                 // work in Postman
     public void deleteTaskById(@PathVariable Long taskId) {
         taskService.deleteTaskById(taskId);
     }
 
-    @PutMapping
+    @PutMapping                                 // work in Postman but title is not updated
     public void updateTask(@RequestBody TaskDto taskDto) {
         taskService.updateTaskById(taskDto);
     }

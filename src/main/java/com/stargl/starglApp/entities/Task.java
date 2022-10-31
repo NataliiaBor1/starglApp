@@ -19,7 +19,7 @@ public class Task {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String title;
 
     @Column(columnDefinition = "text")
