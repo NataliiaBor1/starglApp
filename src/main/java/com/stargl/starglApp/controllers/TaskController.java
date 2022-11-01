@@ -26,7 +26,7 @@ public class TaskController {
         return taskService.getTaskById(taskId);
     }
 
-    @PostMapping("/user/{userId}")                              // work in Postman   title is not setting up
+    @PostMapping("/user/{userId}")                              // does not work in Postman   title is not setting up
     public void addTask(@RequestBody TaskDto taskDto, @PathVariable Long userId) {
         taskService.addTask(taskDto, userId);
     }

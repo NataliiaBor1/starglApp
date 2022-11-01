@@ -3,6 +3,7 @@ package com.stargl.starglApp.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.stargl.starglApp.dtos.UserDto;
+import com.stargl.starglApp.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,6 +43,24 @@ public class User {
 //    @ManyToOne
 //    @JsonBackReference
 //    private Role role;
+//
+//    @Column(name = "role_id", nullable = false, unique = false)
+//    @Enumerated(EnumType.ORDINAL)
+//    private String role;
+
+
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Roles role;
+
+    @Column(name = "stars")
+    private int starNum;
+
+    @Column(name = "parent_id")
+    private Long parentId;
+
+    @Column(name = "children_amount")
+    private int childrenAmount;
 
 
     public User (UserDto userDto) {
@@ -51,7 +70,15 @@ public class User {
         if (userDto.getPassword() != null) {
             this.password = userDto.getPassword();
         }
+        if (userDto.getRole() != null) {
+            this.role = userDto.getRole();
+        }
+        this.parentId = userDto.getParentId();
     }
+
+    // additional page for stars.html
+    // can be drop-down for choosing a kid
+    // button give star
 
 
 }
