@@ -1,6 +1,9 @@
 package com.stargl.starglApp.controllers;
 
 import com.stargl.starglApp.dtos.TaskDto;
+import com.stargl.starglApp.dtos.UserDto;
+import com.stargl.starglApp.entities.User;
+import com.stargl.starglApp.repositories.UserRepository;
 import com.stargl.starglApp.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +13,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/tasks")
+@RequestMapping("/starglApp/tasks")
 public class TaskController {
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/user/{userId}")                           // 500 server error
     public List<TaskDto> getTasksByUser(@PathVariable Long userId) {
@@ -26,9 +32,9 @@ public class TaskController {
         return taskService.getTaskById(taskId);
     }
 
-    @PostMapping("/user/{userId}")                              // does not work in Postman   title is not setting up
-    public void addTask(@RequestBody TaskDto taskDto, @PathVariable Long userId) {
-        taskService.addTask(taskDto, userId);
+    @PostMapping("/user/{parentId}/{childId}")              // does not work in Postman   title is not setting up
+    public void addTask(@RequestBody TaskDto taskDto, @PathVariable Long parentId, @PathVariable Long childId) {
+        taskService.addTask(taskDto, parentId, childId);
     }
 
     @DeleteMapping("/{taskId}")                                 // work in Postman

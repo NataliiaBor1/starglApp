@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TaskService {
     @Transactional
-    List<String> addTask(TaskDto taskDto, Long userId);
+    List<String> addTask(TaskDto taskDto, Long parentId, Long childId);
 
     @Transactional
     void deleteTaskById(Long taskId);

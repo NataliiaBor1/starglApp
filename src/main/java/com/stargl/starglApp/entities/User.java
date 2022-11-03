@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -56,11 +57,19 @@ public class User {
     @Column(name = "stars")
     private int starNum;
 
-    @Column(name = "parent_id")
-    private Long parentId;
+    @ManyToOne
+    @JoinColumn(name = "PARENT_ID", referencedColumnName = "ID")
+    private User parent;
 
-    @Column(name = "children_amount")
-    private int childrenAmount;
+    @OneToMany
+    @JoinColumn(name = "PARENT_ID", referencedColumnName = "ID")
+    private List<User> children;
+
+//    @Column(name = "parent_id")
+//    private Long parentId;
+//
+//    @Column(name = "children_amount")
+//    private int childrenAmount;
 
 
     public User (UserDto userDto) {
@@ -73,7 +82,7 @@ public class User {
         if (userDto.getRole() != null) {
             this.role = userDto.getRole();
         }
-        this.parentId = userDto.getParentId();
+//        this.parentId = userDto.getParentId();
     }
 
     // additional page for stars.html

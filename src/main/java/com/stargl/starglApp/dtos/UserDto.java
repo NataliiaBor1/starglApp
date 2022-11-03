@@ -33,8 +33,6 @@ public class UserDto implements Serializable {
 
     Set<TaskDto> taskDtoSetAssigner = new HashSet<>();
 
-//    private Role role;
-
     public UserDto(User user) {
         if (user.getId() != null) {
             this.id = user.getId();
@@ -48,7 +46,8 @@ public class UserDto implements Serializable {
         if (user.getRole() != null) {
             this.role = user.getRole();
         }
-        this.parentId = user.getParentId();
+//        this.parentId = user.getParentId();
+
     }
 
 

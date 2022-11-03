@@ -36,6 +36,15 @@ public class TaskDto implements Serializable {
         if (task.getBody() != null) {
             this.body = task.getBody();
         }
+        if (task.getTitle() != null) {
+            this.title = task.getTitle();
+        }
+        if (task.getAssignee() != null) {
+            this.assignee = new UserDto(task.getAssignee());
+        }
+        if (task.getAssigner() != null) {
+            this.assigner = new UserDto(task.getAssigner());
+        }
     }
 
 }

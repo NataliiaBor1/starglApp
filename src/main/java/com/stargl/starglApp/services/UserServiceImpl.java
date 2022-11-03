@@ -1,6 +1,8 @@
 package com.stargl.starglApp.services;
 
+import com.stargl.starglApp.dtos.TaskDto;
 import com.stargl.starglApp.dtos.UserDto;
+import com.stargl.starglApp.entities.Task;
 import com.stargl.starglApp.entities.User;
 import com.stargl.starglApp.enums.Roles;
 import com.stargl.starglApp.repositories.UserRepository;
@@ -13,8 +15,10 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -38,11 +42,13 @@ public class UserServiceImpl implements UserService {
             }
             else {
                 response.add("You have registered your child successfully");
-                Optional<User> parent = userRepository.findById(user.getParentId());
-                int chilAmount = parent.get().getChildrenAmount();
-                chilAmount += 1;
-                parent.get().setChildrenAmount(chilAmount);
-                userRepository.save(parent.get());
+                Optional<User> parentOptional = userRepository.findById(userDto.getParentId());
+//                int chilAmount = parent.get().getChildrenAmount();
+//                chilAmount += 1;
+//                parent.get().setChildrenAmount(chilAmount);
+//                parent.ifPresent(user::setParent);
+                user.setParent(parentOptional.get());
+                userRepository.save(user);
             }
         }
         catch (Exception e) {
@@ -51,14 +57,6 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
-    @Transactional
-    public List<String> registerChild(UserDto userDto) {  // ?????????????
-        List<String> response = new ArrayList<>();
-        User user = new User(userDto);
-        userRepository.saveAndFlush(user);
-        response.add("http://localhost:8080/parent.html");
-        return response;
-    }
 
     @Override
     public List<String> userLogin(UserDto userDto) {
@@ -74,13 +72,12 @@ public class UserServiceImpl implements UserService {
                 }
                 response.add(String.valueOf(userOptional.get().getId()));
 
-//                Cookie cookie = new Cookie("data", "Come_to_the_dark_side");//создаем объект Cookie,
-//                //в конструкторе указываем значения для name и value
-//                cookie.setPath("/");//устанавливаем путь
-//                cookie.setMaxAge(86400);//здесь устанавливается время жизни куки
-//                response.add(cookie);   addCookie(cookie);//добавляем Cookie в запрос
-//                response.setContentType("text/plain");//устанавливаем контекст
-//                return ResponseEntity.ok().body(HttpStatus.OK);
+//                Cookie cookie = new Cookie("  string 1", "string 2");
+//                cookie.setPath("/");
+//                cookie.setMaxAge(86400);
+//                response.add(cookie);   addCookie(cookie);
+//                response.setContentType("text/plain");
+//                return ResponseEntity.ok().body(HttpStatus.OK); ???
             }
             else {
                 response.add("Username or password is incorrect");
@@ -90,5 +87,17 @@ public class UserServiceImpl implements UserService {
             response.add("Username or password is incorrect");
         }
         return response;
+    }
+
+    @Override
+    public List<UserDto> getAllChildrenByUserId(Long parentId) {   // ?????????????????
+        Optional<User> userOptional = userRepository.findById(parentId);
+        if (userOptional.isPresent()) {
+            List<User> childrenList = userRepository.findAllByParentEquals(userOptional.get());
+            return childrenList.stream().map(child -> new UserDto(child)).collect(Collectors.toList());
+            //return taskList.stream().map(task -> new TaskDto(task)).collect(Collectors.toList());
+//            return Collections.emptyList();
+        }
+        return Collections.emptyList();
     }
 }

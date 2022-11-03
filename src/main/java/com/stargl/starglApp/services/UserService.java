@@ -10,4 +10,7 @@ public interface UserService {
     List<String> registerUser(UserDto userDto);
 
     List<String> userLogin(UserDto userDto);
+
+    List<UserDto> getAllChildrenByUserId(Long parentId);
+
 }

@@ -1,6 +1,7 @@
 package com.stargl.starglApp.services;
 
 import com.stargl.starglApp.dtos.TaskDto;
+import com.stargl.starglApp.dtos.UserDto;
 import com.stargl.starglApp.entities.Task;
 import com.stargl.starglApp.entities.User;
 import com.stargl.starglApp.repositories.TaskRepository;
@@ -26,13 +27,18 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     @Transactional
-    public List<String> addTask(TaskDto taskDto, Long userId) {
+    public List<String> addTask(TaskDto taskDto, Long parentId, Long childId) {
         List<String> response = new ArrayList<>();
-        Optional<User> userOptional = userRepository.findById(userId);
 
-        if (userOptional.isPresent()) {
+        Optional<User> parentOptional = userRepository.findById(parentId);
+        Optional<User> childOptional = userRepository.findById(childId);
+//        taskDto.setAssigner(new UserDto(parentOptional.get()));
+//        taskDto.setAssignee(new UserDto(childOptional.get()));
+
+        if (parentOptional.isPresent() && childOptional.isPresent()) {
             Task task = new Task(taskDto);
-            userOptional.ifPresent(task::setAssigner);
+            parentOptional.ifPresent(task::setAssigner);
+            childOptional.ifPresent(task::setAssignee);
             taskRepository.saveAndFlush(task);
             response.add("Task was successfully created");
             return response;
@@ -76,11 +82,21 @@ public class TaskServiceImpl implements TaskService {
      public List<TaskDto> getAllTasksByUserId(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
-            List<Task> taskList = taskRepository.findAllById(userOptional.get());
+            List<Task> taskList = taskRepository.findAllByAssignerEquals(userOptional.get());
             return taskList.stream().map(task -> new TaskDto(task)).collect(Collectors.toList());
         }
         return Collections.emptyList();
      }
+
+//    @Override
+//    public List<TaskDto> getAllTasksByChildId(Long userId) {
+//        Optional<User> userOptional = userRepository.findById(userId);
+//        if (userOptional.isPresent()) {
+//            List<Task> taskList = taskRepository.findAllByAssignerEquals(userOptional.get());
+//            return taskList.stream().map(task -> new TaskDto(task)).collect(Collectors.toList());
+//        }
+//        return Collections.emptyList();
+//    }
 
 
 

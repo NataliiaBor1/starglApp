@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/starglApp/users")
 public class UserController {
 
     @Autowired
@@ -33,7 +33,6 @@ public class UserController {
 
 //    @Autowired
 //    private TaskRepository taskRepository;
-
 
     @PostMapping("/register")
     public List<String> registerParent(@RequestBody UserDto userDto) {  // finally! work in Postman
@@ -53,8 +52,15 @@ public class UserController {
         return userService.registerUser(userDto);
     }
 
+    @PostMapping("/login")  //  work  in Postman
+    public List<String> userLogin(@RequestBody UserDto userDto) {  // account-role saved for cookie
+        List<String> response = new ArrayList<>();
+        // save username and role like cookies ???
+        return userService.userLogin(userDto);
+    }
+
     @GetMapping
-    public Optional<UserDto> getUserById(@RequestParam Long id) {  // status 200 OK. Data or null // checked in Postman
+    public Optional<UserDto> getUserById(@RequestParam Long id) {  //?????? status 200 OK. Data or null // checked in Postman
         List<String> response = new ArrayList<>();
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
@@ -65,16 +71,20 @@ public class UserController {
         return Optional.empty();
     }
 
-    @PostMapping("/login")  //  work  in Postman
-    public List<String> userLogin(@RequestBody UserDto userDto) {  // account-role saved for cookie
-        List<String> response = new ArrayList<>();
-         // save username and role like cookies
-        return userService.userLogin(userDto);
+    @GetMapping("/{parentId}")
+    public List<UserDto> getAllChildrenByUserId(@PathVariable Long parentId) {
+        return userService.getAllChildrenByUserId(parentId);
     }
+
+
+
+
 
     // radio button or drop-down (parent or child) - for index page
 
     // method giveStar ++
+    // add api to get children List
+    //
 
 
 
