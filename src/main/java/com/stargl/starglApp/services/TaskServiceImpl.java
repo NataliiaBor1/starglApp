@@ -79,14 +79,24 @@ public class TaskServiceImpl implements TaskService {
      }
 
      @Override
-     public List<TaskDto> getAllTasksByUserId(Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
+     public List<TaskDto> getAllTasksByAssignerId(Long assignerId) {
+        Optional<User> userOptional = userRepository.findById(assignerId);
         if (userOptional.isPresent()) {
             List<Task> taskList = taskRepository.findAllByAssignerEquals(userOptional.get());
             return taskList.stream().map(task -> new TaskDto(task)).collect(Collectors.toList());
         }
         return Collections.emptyList();
      }
+
+     @Override
+    public List<TaskDto> getAllTasksByAssigneeId(Long assigneeId) {
+        Optional<User> userOptional = userRepository.findById(assigneeId);
+        if (userOptional.isPresent()) {
+            List<Task> taskList = taskRepository.findAllByAssigneeEquals(userOptional.get());
+            return taskList.stream().map(task -> new TaskDto(task)).collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
 
 //    @Override
 //    public List<TaskDto> getAllTasksByChildId(Long userId) {

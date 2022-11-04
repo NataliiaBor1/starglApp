@@ -31,9 +31,6 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    @Autowired
-//    private TaskRepository taskRepository;
-
     @PostMapping("/register")
     public List<String> registerParent(@RequestBody UserDto userDto) {  // finally! work in Postman
         String encodedPassw = passwordEncoder.encode(userDto.getPassword());
@@ -60,7 +57,7 @@ public class UserController {
     }
 
     @GetMapping
-    public Optional<UserDto> getUserById(@RequestParam Long id) {  //?????? status 200 OK. Data or null // checked in Postman
+    public Optional<UserDto> getUserById(@RequestParam Long id) {  // status 200 OK. Data or null // checked in Postman
         List<String> response = new ArrayList<>();
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
@@ -72,20 +69,15 @@ public class UserController {
     }
 
     @GetMapping("/{parentId}")
-    public List<UserDto> getAllChildrenByUserId(@PathVariable Long parentId) {
+    public List<UserDto> getAllChildrenByUserId(@PathVariable Long parentId) { // work in postman
         return userService.getAllChildrenByUserId(parentId);
     }
-
-
 
 
 
     // radio button or drop-down (parent or child) - for index page
 
     // method giveStar ++
-    // add api to get children List
-    //
-
 
 
 

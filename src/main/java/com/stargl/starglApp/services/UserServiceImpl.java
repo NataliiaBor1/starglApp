@@ -90,13 +90,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getAllChildrenByUserId(Long parentId) {   // ?????????????????
+    public List<UserDto> getAllChildrenByUserId(Long parentId) {   // work in postman
         Optional<User> userOptional = userRepository.findById(parentId);
         if (userOptional.isPresent()) {
             List<User> childrenList = userRepository.findAllByParentEquals(userOptional.get());
             return childrenList.stream().map(child -> new UserDto(child)).collect(Collectors.toList());
-            //return taskList.stream().map(task -> new TaskDto(task)).collect(Collectors.toList());
-//            return Collections.emptyList();
         }
         return Collections.emptyList();
     }

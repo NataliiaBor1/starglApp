@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-//    @Bean
+
      List<Task> findAllByAssignerEquals(User user);
+
+     List<Task> findAllByAssigneeEquals(User user);
 }
