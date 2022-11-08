@@ -21,4 +21,7 @@ public interface TaskService {
     List<TaskDto> getAllTasksByAssignerId(Long assignerId);
 
     List<TaskDto> getAllTasksByAssigneeId(Long assigneeId);
+
+    @Transactional
+    List<String> completeTaskByTaskId(Long taskId, int star);
 }

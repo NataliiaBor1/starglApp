@@ -3,6 +3,7 @@ package com.stargl.starglApp.dtos;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.stargl.starglApp.entities.Task;
 import com.stargl.starglApp.entities.User;
+import com.stargl.starglApp.enums.Statuses;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,9 +26,11 @@ public class TaskDto implements Serializable {
 
     private String body;
 
+    private Statuses status;
+
     private UserDto assigner;
 
-    private UserDto assignee;         //?????????????
+    private UserDto assignee;
 
     public TaskDto(Task task) {
         if (task.getId() != null) {
@@ -44,6 +47,9 @@ public class TaskDto implements Serializable {
         }
         if (task.getAssigner() != null) {
             this.assigner = new UserDto(task.getAssigner());
+        }
+        if (task.getStatus() != null) {
+            this.status = task.getStatus();
         }
     }
 

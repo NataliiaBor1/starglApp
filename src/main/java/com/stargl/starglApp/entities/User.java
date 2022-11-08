@@ -82,6 +82,9 @@ public class User {
         if (userDto.getRole() != null) {
             this.role = userDto.getRole();
         }
+        if (userDto.getStarNum() != 0) {
+            this.starNum = userDto.getStarNum();
+        }
 //        this.parentId = userDto.getParentId();
     }
 

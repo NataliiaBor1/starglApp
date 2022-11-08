@@ -3,6 +3,7 @@ package com.stargl.starglApp.controllers;
 import com.stargl.starglApp.dtos.TaskDto;
 import com.stargl.starglApp.dtos.UserDto;
 import com.stargl.starglApp.entities.User;
+import com.stargl.starglApp.enums.Statuses;
 import com.stargl.starglApp.repositories.UserRepository;
 import com.stargl.starglApp.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +40,18 @@ public class TaskController {
 
     @PostMapping("/user/{parentId}/{childId}")              // work in Postman
     public void addTask(@RequestBody TaskDto taskDto, @PathVariable Long parentId, @PathVariable Long childId) {
+        taskDto.setStatus(Statuses.STARTED);
         taskService.addTask(taskDto, parentId, childId);
     }
 
     @DeleteMapping("/{taskId}")                                 // work in Postman
     public void deleteTaskById(@PathVariable Long taskId) {
         taskService.deleteTaskById(taskId);
+    }
+
+    @PatchMapping("/{taskId}")
+    public void completeTaskByTaskId(@PathVariable Long taskId, @RequestParam int star) {
+        taskService.completeTaskByTaskId(taskId, star);
     }
 
     @PutMapping                                 // work in Postman

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Parent view</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<h1>Welcome to Parent page!!!</h1>
+<div th:each="task : ${tasks}" class="alert alert-info mt-2">
+    <h3 th:text="${task.title}"/>
+    <p th:text="${task.body}"/>
+
+    <a th:href="'/tasks/' + %{task.id} + '/edit'" class="btn btn-warning">Details</a>
+    <a th:href="'/tasks/' + %{task.id} + '/delete'" class="btn btn-warning">Delete</a>
+
+    <div class="container mt-5 mb-5">
+        <h1>Add your task</h1>
+        <form action="/parent" method="post">
+            <input type="text" name="title" placeholder="Add name of task" class="form-control"><br>
+            <textarea name="body" placeholder="Add description of task" class="form-control"></textarea><br>
+            <input type="text" name="assignee" placeholder="Who should do the task?" class="form-control"><br>
+
+            <button type="submit" class="btn btn-success">Add task</button>
+        </form>
+    </div>
+
+</div>
+
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>
