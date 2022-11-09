@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -16,8 +16,9 @@
             crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body class="container">
         Welcome to the login page !
+        <header th:insert="blocks/header :: header"></header>
 
         <div class="container-md">
             <h1>LOGIN</h1>
@@ -37,6 +38,8 @@
             </form>
         </div>
 
+        <script src="./js/login.js" type="application/javascript"></script>
 
+        <div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>

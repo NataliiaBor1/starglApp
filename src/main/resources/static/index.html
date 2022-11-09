@@ -1,16 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Beginning page</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum=scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login page</title>
+
+    <link rel="stylesheet" href="./css/login.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
+    <title>Main page</title>
+    <style>
+      .button {
+      background-color: #E0FFFF;
+      border: none;
+      color: Black;
+      padding: 20px 34px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 4px 2px;
+      cursor: pointer;
+      }
+    </style>
 </head>
 <body>
-<h1>Welcome to Stargl App!!!</h1>
+<header th:insert="blocks/header :: header"></header>
+
+<h5>Welcome to Stargl App!!!</h5>
 <img src="images/stars.png" alt="You will earn stars here!"/>
-<p></p>
-<p></p>
 
-<h2>Are you parent or child?</h2>
+<h5>Are you parent or child?</h5>
+<form>
+    <p><button class="button" href="./register.html">Parent</button>
+        <button  class="button" href="./login.html">
+            <img src="images/child.gif" alt="" style="vertical-align:middle">
+            Child
+        </button></p>
+</form>
 
+<script src="./js/login.js" type="application/javascript"></script>
+<!--<a href="./login.html" class="button">Parent</a>-->
+<!--<a href="./login.html" class="button">Child</a>-->
+
+<div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>

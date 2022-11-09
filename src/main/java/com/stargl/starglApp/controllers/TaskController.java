@@ -23,6 +23,11 @@ public class TaskController {
     @Autowired
     private UserRepository userRepository;
 
+    @RequestMapping("/")
+    public String toHome() {
+        return "index";
+    }
+
     @GetMapping("/assigner/{assignerId}")                           // work in postman
     public List<TaskDto> getTasksByAssigner(@PathVariable Long assignerId) {
         return taskService.getAllTasksByAssignerId(assignerId);
