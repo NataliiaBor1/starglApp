@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
                 response.add("http://localhost:8080/login.html");
             }
             else {
+//                response.add("http://localhost:8080/parent.html");
                 response.add("You have registered your child successfully");
                 Optional<User> parentOptional = userRepository.findById(userDto.getParentId());
 //                int chilAmount = parent.get().getChildrenAmount();

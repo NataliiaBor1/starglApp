@@ -32,24 +32,32 @@
     </style>
 </head>
 <body>
-<header th:insert="blocks/header :: header"></header>
+<!--<header th:insert="blocks/header :: header"></header>-->
 
 <h5>Welcome to Stargl App!!!</h5>
 <img src="images/stars.png" alt="You will earn stars here!"/>
 
 <h5>Are you parent or child?</h5>
-<form>
-    <p><button class="button" href="./register.html">Parent</button>
-        <button  class="button" href="./login.html">
+<!--<form>-->
+    <p><button onclick="goLoginParent()" id="go-login-parent" class="button" href="./login.html">Parent</button>
+        <button onclick="goLoginChild()" id="go-login-child" class="button" href="./login.html">
             <img src="images/child.gif" alt="" style="vertical-align:middle">
             Child
         </button></p>
-</form>
+<!--</form>-->
 
-<script src="./js/login.js" type="application/javascript"></script>
+<script>
+    function goLoginParent() {
+        document.location.href = "http://localhost:8080/login.html";
+    }
+    function goLoginChild() {
+        document.location.href = "http://localhost:8080/login.html";
+    }
+</script>
+<!--<script src="./js/index.js" type="application/javascript"></script>-->
 <!--<a href="./login.html" class="button">Parent</a>-->
 <!--<a href="./login.html" class="button">Child</a>-->
 
-<div th:insert="blocks/footer :: footer"></div>
+<!--<div th:insert="blocks/footer :: footer"></div>-->
 </body>
 </html>

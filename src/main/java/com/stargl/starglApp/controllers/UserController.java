@@ -73,13 +73,4 @@ public class UserController {
         return userService.getAllChildrenByUserId(parentId);
     }
 
-
-
-    // radio button or drop-down (parent or child) - for index page
-
-    // method giveStar ++
-
-
-
-
 }
