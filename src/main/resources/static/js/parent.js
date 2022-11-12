@@ -1,7 +1,14 @@
 // Cookie
-const cookieArr = document.cookie.split("=")
-const parentId = cookieArr[1]
-//var childId; // ?????????????
+//const cookieArr = document.cookie.split("=")
+//const parentId = cookieArr[1]
+//const parentRole =
+const parentId = getCookie('userId');
+
+function getCookie(name) {
+   var value = "; " + document.cookie;
+   var parts = value.split("; " + name + "=");
+   if (parts.length == 2) return parts.pop().split(";").shift();
+}
 
 const registerForm = document.getElementById('register-form')
 const registerUsername = document.getElementById('register-username')

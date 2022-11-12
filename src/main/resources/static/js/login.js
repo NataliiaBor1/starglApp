@@ -2,6 +2,15 @@ let loginForm = document.getElementById('login-form')
 let loginUsername = document.getElementById('login-username')
 let loginPassword = document.getElementById('login-password')
 
+const role = getCookie('role');
+const registerBtn = document.getElementById('register-href')
+
+function getCookie(name) {
+   var value = "; " + document.cookie;
+   var parts = value.split("; " + name + "=");
+   if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
 const headers = {
     'Content-Type':'application/json'
 }
@@ -30,5 +39,15 @@ const handleSubmit = async (e) => {
         window.location.replace(responseArr[0])
     }
 }
+
+function identifyRole(role) {
+if (role === 'CHILD'){
+    registerBtn.classList.add('disabled');
+  }else{
+    registerBtn.classList.remove('disabled');  // classList.remove('disabled')
+  }
+}
+
+identifyRole(role);
 
     loginForm.addEventListener("submit", handleSubmit)

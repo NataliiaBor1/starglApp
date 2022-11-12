@@ -1,0 +1,31 @@
+.button {
+      background-color: #E0FFFF;
+      border: 5px solid aqua;
+      height: 80px;
+      width: 130px;
+      color: Black;
+      padding: 20px 34px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 4px 2px;
+      cursor: pointer;
+      }
+
+.box {
+      border: 8px;
+      height: 250px;
+      width: 300px;
+}
+
+.child {
+      border: 2px;
+      height: 20px;
+      width: 20px;
+}
+
+.title {
+    color: black;
+    font-weight: bold;
+}

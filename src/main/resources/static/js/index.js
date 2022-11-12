@@ -2,19 +2,7 @@
 let goLoginParentBtn = document.getElementById('go-login-parent')
 let goLoginChildBtn = document.getElementById('go-login-child')
 
-const headers = {
-    'Content-Type':'application/json'
-}
 
-const baseUrl = 'http://localhost:8080/starglApp/users'
-
-
-
-//<p><button id="go-login-parent" class="button" href="./login.html">Parent</button>
-//        <button id="go-login-child" class="button" href="./login.html">
-//            <img src="images/child.gif" alt="" style="vertical-align:middle">
-//            Child
-//        </button></p>
 
 //const populateModal = (obj) =>{
 //    taskBody.value = ''
@@ -22,16 +10,21 @@ const baseUrl = 'http://localhost:8080/starglApp/users'
 //    goLoginParentBtn.setAttribute('data-task-id', obj.id)
 //}
 
+//function goLoginParent() {
+//        document.location.href = "http://localhost:8080/login.html";
+//    }
+//    function goLoginChild() {
+//        document.location.href = "http://localhost:8080/login.html";
+//    }
+
 goLoginParentBtn.addEventListener("click", (e)=>{
-        window.location.href('./login.html')
-//    let taskId = e.target.getAttribute('data-task-id')
-//    handleTaskEdit(taskId);
+        document.cookie = `role=PARENT`
+        window.location.replace("http://localhost:8080/login.html");
 })
 
 goLoginChildBtn.addEventListener("click", (e)=>{
-        window.location.href('./login.html')
-//    let taskId = e.target.getAttribute('data-task-id')
-//    handleTaskEdit(taskId);
+        document.cookie = `role=CHILD`
+        window.location.href = "http://localhost:8080/login.html";
 })
 
 //document.getElementById('mybutton').onclick = function() {
