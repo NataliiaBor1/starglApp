@@ -14,7 +14,11 @@ const registerForm = document.getElementById('register-form')
 const registerUsername = document.getElementById('register-username')
 const registerPassword = document.getElementById('register-password')
 const childrenSelect = document.getElementById('children-list')
+//const  = document.getElementById('"added-task-child-error"')
 //const registerAddChild = document.getElementById('register-add-child')
+
+registerUsername.value = "";
+registerPassword.value = "";
 
 //DOM Elements
 const submitForm = document.getElementById("task-form")
@@ -76,7 +80,13 @@ const handleSubmit = async (e) => {
 }
 
 async function addTask(obj) {
+    if (childrenSelect.options.length==0) {
+                document.getElementById("added-task-child-error").innerText = "It looks like you do not have kids yet..."; // ????
+                return ;
+         }
+
     childId = childrenSelect.options[childrenSelect.selectedIndex].value;
+
     const response = await fetch(`${baseUrl}tasks/user/${parentId}/${childId}`, {  // "/user/{parentId}/{childId}"
         method: "POST",
         body: JSON.stringify(obj),

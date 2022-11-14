@@ -2,6 +2,12 @@
     color: green;
     font-weight: bold;
     font-size: 18px;
-
-
 }
+
+.error-status {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
