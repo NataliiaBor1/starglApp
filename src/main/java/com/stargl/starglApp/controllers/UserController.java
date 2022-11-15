@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @PostMapping("/addChild/{parentId}")
-    public List<String> registerChild(@RequestBody UserDto userDto, @PathVariable Long parentId) {  //??????????????
+    public List<String> registerChild(@RequestBody UserDto userDto, @PathVariable Long parentId) {
         String encodedPassw = passwordEncoder.encode(userDto.getPassword());
 
         userDto.setPassword(encodedPassw);

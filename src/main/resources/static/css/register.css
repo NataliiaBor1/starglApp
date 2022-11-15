@@ -1,7 +1,3 @@
-a.disabled {
-  pointer-events: none;
-}
-
 .child-background{
     background: transparent;
     background-image: url('../images/child_background.jpg');

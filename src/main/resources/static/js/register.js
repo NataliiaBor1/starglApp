@@ -27,6 +27,8 @@ const handleSubmit = async (e) =>{
 
     if (response.status === 200) {
         window.location.replace(responseArr[0])
+        registerUsername.value = "";
+        registerPassword.value = "";
     }
 }
 

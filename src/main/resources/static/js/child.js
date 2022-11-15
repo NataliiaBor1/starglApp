@@ -1,5 +1,3 @@
-
-
 //cookie=document.cookie;
 const childId = getCookie('userId');
 
@@ -33,17 +31,14 @@ const createTaskCards = (array) => {
     taskContainer.innerHTML = ''
     array.forEach(obj => {
         let taskCard = document.createElement("div")
-        //taskCard.classList.add("m-2")
+        taskCard.classList.add("card")
+        taskCard.classList.add("d-flex")
         taskCard.innerHTML = `
-            <div class="d-flex flex-column gap-2">
-                        <div class="card d-flex" style="width: 18rem; height: 18rem;">
                             <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
                                 <p class="card-status">${obj.status}</p>
-                                <h4 class="fw-semibold mb-0">${obj.title}</h4>
+                                <h6 class="fw-semibold mb-0">${obj.title}</h6>
                                 <p class="text-muted">${obj.body}</p>
                             </div>
-                        </div>
-                    </div>
         `
         taskContainer.append(taskCard);
     })

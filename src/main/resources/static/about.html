@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html"/>
@@ -15,21 +15,41 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 
-    <title th:text="${title}"></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./css/about.css" type="text/css">
+
+    <title>About Stargl App</title>
+
 </head>
-<body>
-<!--<header th:insert="blocks/header :: header"></header>-->
+<body class="d-flex h-100 text-center text-bg-dark">
 
-<div class="container mt-5">
-    <h1 th:text="${title}"/>
-</div>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+        <div>
+            <h5 id="hello-child" class="float-md-start mb-0">About Stargl App</h5>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/" >Home</a>
+                <a class="nav-link fw-bold py-1 px-0" href="/about.html" >About</a>
+                <a class="nav-link fw-bold py-1 px-0" href="#">Contacts</a>
+            </nav>
+        </div>
+    </header>
 
-<!--<div th:insert="blocks/footer :: footer"></div>-->
+<main class="px-3 child-background">
+
+
+<!--    <div class="container mt-5">-->
+        <h1 align="center">Stargl App!</h1>
+
+        <p align="center">Here you can earn stars!</p>
+<!--    </div>-->
+
+</main>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+</div>
 
 </body>
 </html>

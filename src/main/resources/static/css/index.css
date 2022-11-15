@@ -29,3 +29,18 @@
     color: black;
     font-weight: bold;
 }
+
+.child-background{
+    background: transparent;
+    background-image: url('../images/child_background.jpg');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    height: 100vh;
+    flex: 1 1 auto
+}
+
+a {
+      width:55px;
+      display:block;
+}

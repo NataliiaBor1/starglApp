@@ -66,8 +66,6 @@ registerForm.addEventListener("submit", handleSubmitAddChild)
 
 ///////////////////////////////////
 
-//const baseUrl = "http://localhost:8080/starglApp/tasks"
-
 const handleSubmit = async (e) => {
     e.preventDefault()
     let bodyObj = {
