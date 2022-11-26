@@ -55,8 +55,8 @@ public class TaskController {
     }
 
     @PatchMapping("/{taskId}")
-    public void completeTaskByTaskId(@PathVariable Long taskId, @RequestParam int star) {
-        taskService.completeTaskByTaskId(taskId, star);
+    public List<String> completeTaskByTaskId(@PathVariable Long taskId, @RequestParam int star) {
+        return taskService.completeTaskByTaskId(taskId, star);
     }
 
     @PutMapping                                 // work in Postman

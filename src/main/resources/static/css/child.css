@@ -49,9 +49,6 @@
 
 .nav-link{
     border: solid white;
+    border-width: 0 7px;
 }
 
-a {
-      width:55px;
-      display:block;
-}

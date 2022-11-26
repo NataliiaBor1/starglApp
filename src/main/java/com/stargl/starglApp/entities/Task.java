@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Tasks")
@@ -31,6 +33,15 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Statuses status;
 
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
+
+    @Column(name = "final_date")
+    private LocalDateTime finalDate;
+
+    @Column(name = "due_date")
+    private LocalDateTime dueDate;
+
     @ManyToOne
     @JsonBackReference
     private User assigner;
@@ -48,6 +59,9 @@ public class Task {
         }
         if (taskDto.getStatus() != null) {
             this.status = taskDto.getStatus();
+        }
+        if (taskDto.getDueDate() != null) {
+            this.dueDate = taskDto.getDueDate();
         }
     }
 }

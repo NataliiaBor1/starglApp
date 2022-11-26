@@ -24,9 +24,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column
-//    private String role;
-
     @Column(unique = true)
     private String username;
 
@@ -87,10 +84,5 @@ public class User {
         }
 //        this.parentId = userDto.getParentId();
     }
-
-    // additional page for stars.html
-    // can be drop-down for choosing a kid
-    // button give star
-
 
 }

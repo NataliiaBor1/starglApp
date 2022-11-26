@@ -68,13 +68,16 @@ registerForm.addEventListener("submit", handleSubmitAddChild)
 
 const handleSubmit = async (e) => {
     e.preventDefault()
+    let curDate = getDateByString(document.getElementById("task-due-date").value)
     let bodyObj = {
         title: document.getElementById("task-title").value,
-        body: document.getElementById("task-input").value
+        body: document.getElementById("task-input").value,
+        dueDate: curDate.toISOString()
     }
     await addTask(bodyObj);
     document.getElementById("task-input").value = ''
     document.getElementById("task-title").value = ''
+    document.getElementById("task-due-date").value = ''
 }
 
 async function addTask(obj) {
@@ -97,6 +100,12 @@ async function addTask(obj) {
 
             return getTasksByParent(parentId);
     }
+}
+
+function getDateByString(str) {
+    arr = str.split(".");
+
+    return new Date(parseInt(arr[2]),parseInt(arr[0]) - 1,parseInt(arr[1]));
 }
 
 async function getTasksByParent(parentId) {  //    /assigner/{assignerId}
@@ -166,15 +175,44 @@ async function handleTaskEdit(taskId){
     return getTasksByParent(parentId);
 }
 
+async function handleCompleteTask(taskId) {
+    result = prompt("How many stars would you like to give?", 1);
+
+    const response = await fetch(`${baseUrl}tasks/${taskId}?star=${result}`, {
+        method: "PATCH",
+        headers: headers
+    })
+        .catch(err => console.error(err.message))
+
+    const responseArr = await response.json()
+
+    if (response.status == 200) {
+    alert(responseArr[0]);
+    return getTasksByParent(parentId)
+    }
+}
+
 const createTaskCards = (array) => {
     taskContainer.innerHTML = ''
     array.forEach(obj => {
+    let dueDate = ""
+        if (obj.dueDate !== null) {
+            dueDate = new Date(obj.dueDate).toDateString()
+        }
+    let startDate =""
+        if (obj.startDate )
+
         let taskCard = document.createElement("div")
         taskCard.classList.add("m-2")
         taskCard.innerHTML = `
+        <div id="task-response${obj.id}" class="task-response"></div>
             <div class="card d-flex" style="width: 18rem; height: 18rem;">
                 <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
-                    <p class="card-status">${obj.status}</p>
+                    <div class="d-flex justify-content-between">
+                         <p class="card-status">${obj.status} <span class="assignee-name">by ${obj.assignee.username}</span></p>
+                         <p class="due-date-info">must be completed until ${dueDate}</p>
+                         <button class="btn btn-primary" onclick="handleCompleteTask(${obj.id})">Complete</button>
+                    </div>
                     <p class="card-title">${obj.title}</p>
                     <p class="card-text">${obj.body}</p>
                     <div class="d-flex justify-content-between">
@@ -209,6 +247,17 @@ function addOption(oListbox, text, value, isDefaultSelected, isSelected)
   else if (isSelected) oOption.selected = true;
 
   oListbox.appendChild(oOption);
+}
+
+function newElement(){  // ?????????????
+    var li = document.createElement('li');
+    var inputValue = document.getElementById('form-control').value;
+    var i = document.createTextNode(inputValue);
+    li.appendChild(i);
+    var date = new Date();
+    var taskDate = date.toLocaleString();
+    var time = document.createTextNode(" " + taskDate);
+    li.appendChild(time);
 }
 
 

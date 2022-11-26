@@ -13,6 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -32,6 +35,14 @@ public class TaskDto implements Serializable {
 
     private UserDto assignee;
 
+    private LocalDateTime startDate;
+
+    private LocalDateTime finalDate;
+
+    private LocalDateTime dueDate;
+
+//    private LocalDateTime date;
+
     public TaskDto(Task task) {
         if (task.getId() != null) {
             this.id = task.getId();
@@ -50,6 +61,15 @@ public class TaskDto implements Serializable {
         }
         if (task.getStatus() != null) {
             this.status = task.getStatus();
+        }
+        if (task.getStartDate() != null) {
+            this.startDate = task.getStartDate();
+        }
+        if (task.getFinalDate() != null) {
+            this.finalDate = task.getFinalDate();
+        }
+        if (task.getDueDate() != null) {
+            this.dueDate = task.getDueDate();
         }
     }
 

@@ -6,3 +6,8 @@
     background-size: cover;
     flex: 1 1 auto
 }
+
+.nav-link{
+    border: solid white;
+    border-width: 0 7px;
+}

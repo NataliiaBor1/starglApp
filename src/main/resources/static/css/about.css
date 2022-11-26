@@ -8,7 +8,7 @@
     flex: 1 1 auto
 }
 
-a {
-      width:55px;
-      display:block;
+.nav-link{
+    border: solid white;
+    border-width: 0 7px;
 }

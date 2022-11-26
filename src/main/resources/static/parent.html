@@ -14,12 +14,25 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" type="text/css" href="./css/calendar.css" />
     <link rel="stylesheet" href="./css/parent.css" type="text/css">
 
 </head>
-<body>
-<!--<header th:insert="blocks/header :: header"></header>-->
+<body class="d-flex h-100 text-center text-bg-dark">
 
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+        <div>
+            <h5 id="hello-child" class="float-md-start mb-0">Parent page</h5>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/" >Home</a>
+                <a class="nav-link fw-bold py-1 px-0" href="/about.html" >About</a>
+                <a class="nav-link fw-bold py-1 px-0" href="#">Contacts</a>
+            </nav>
+        </div>
+    </header>
+
+<!--    <main>-->
 <h1>Welcome to Parent page!!!</h1>
 <div th:each="task : ${tasks}" class="alert alert-info mt-2">
     <h3 th:text="${task.title}"/>
@@ -29,11 +42,13 @@
     <a th:href="'/tasks/' + %{task.id} + '/delete'" class="btn btn-warning">Delete</a>
 
     <div class="container mt-5 mb-5" id="home-container">
-            <div id="added-task-child" class="ok-status"></div>
+            <div id="added-task-child" class="ok-status"></div>   <!-- change name of id later -->
             <div id="added-task-child-error" class="error-status"></div>
         <h1>ADD YOUR TASK</h1>
         <form action="/parent" method="post" id="task-form">
             <input id="task-title" type="text" name="title" placeholder="Add name of task" class="form-control"><br>
+            <input id="task-due-date" placeholder="Add due date" onClick="xCal(this, {lang: 'en', order: 2})" onClick="xCal()" oninput="xCal()"> <br>
+<!--            <strong onClick="alert(xCal(2))">Current date</strong>-->
             <textarea id="task-input" name="body" placeholder="Add description of task" rows="5" class="form-control"></textarea><br>
 <!--            <input type="text" name="assignee" placeholder="Who should do the task?" class="form-control"><br>-->
             <div >
@@ -45,24 +60,14 @@
             </div>
             <button type="submit" class="btn btn-success">Add task</button>
         </form>
-        <div id="task-container" class="container-fluid"></div>
+        <div id="task-container" class="container-fluid">
+
+
+        </div>
     </div>
 </div>
 
-
-<!--form from home.html-->
-<!--<div class="container" id="home-container">-->
-<!--    <div id="task-form-container">-->
-<!--        <form id="task-form">-->
-<!--            <div class="form-group">-->
-<!--                <textarea class="form-control" id="task-input" placeholder="Add your task..." rows="5"></textarea>-->
-<!--            </div>-->
-<!--            <button id="submit-button" type="submit" class="btn btn-primary mt-1">Submit</button>-->
-<!--        </form>-->
-<!--        <div id="task-container" class="container-fluid"></div>-->
-<!--    </div>-->
-<!--</div>-->
-
+        <div class="px-3 child-background">
 <div class="container mt-5 mb-5">   <!-- "container-md" -->
     <div id="register-add-child" class="ok-status"></div>
     <h1>REGISTER CHILD</h1>
@@ -76,11 +81,12 @@
             <input type="password" class="form-control" id="register-password" placeholder="Password">
         </div>
         <div class="mt-1">
-            <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
-            <a href="./login.html" class="btn btn-secondary">Login</a>
+            <button id="submit-button" type="submit" class="btn btn-primary">Add</button>
+<!--            <a href="./login.html" class="btn btn-secondary">Login</a>-->
         </div>
     </form>
 </div>
+        </div>
 
 <!-- Modal -->
 <div class="modal fade" id="task-edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="task-edit-modal-title" aria-hidden="true">
@@ -100,13 +106,19 @@
         </div>
     </div>
 </div>
+<!--    </main>-->
+</div>>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-<script src="./js/parent.js" type="application/javascript"></script>
+<script type="text/javascript" src="./js/calendar.js"></script>
+    <script src="./js/parent.js" type="application/javascript"></script>
 
-<!--<div th:insert="blocks/footer :: footer"></div>-->
+
+
+
+
 </body>
 </html>

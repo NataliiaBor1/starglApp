@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,6 +40,7 @@ public class TaskServiceImpl implements TaskService {
             Task task = new Task(taskDto);
             parentOptional.ifPresent(task::setAssigner);
             childOptional.ifPresent(task::setAssignee);
+            task.setStartDate(LocalDateTime.now());
             taskRepository.saveAndFlush(task);
             response.add("Task was successfully created");
             return response;
@@ -110,6 +112,7 @@ public class TaskServiceImpl implements TaskService {
 
             taskOptional.ifPresent(task -> {
                 task.setStatus(Statuses.DONE);
+                task.setFinalDate(LocalDateTime.now());
                 taskRepository.save(task);
             });
             User child = taskOptional.get().getAssignee();
