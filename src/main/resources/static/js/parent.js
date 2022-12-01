@@ -3,6 +3,7 @@
 //const parentId = cookieArr[1]
 //const parentRole =
 const parentId = getCookie('userId');
+//const parentUsername = getCookie('username');
 
 function getCookie(name) {
    var value = "; " + document.cookie;
@@ -199,10 +200,17 @@ const createTaskCards = (array) => {
         if (obj.dueDate !== null) {
             dueDate = new Date(obj.dueDate).toDateString()
         }
-    let startDate =""
-        if (obj.startDate )
+    let finalDate =""
+        if (obj.finalDate !== null) {
+            finalDate = new Date(obj.finalDate).toDateString()
+        }
+    let startDate = ""
+        if (obj.startDate !== null) {
+            startDate = new Date(obj.startDate).toDateString()
+        }
 
         let taskCard = document.createElement("div")
+        taskCard.classList.add("card")
         taskCard.classList.add("m-2")
         taskCard.innerHTML = `
         <div id="task-response${obj.id}" class="task-response"></div>
@@ -210,14 +218,15 @@ const createTaskCards = (array) => {
                 <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
                     <div class="d-flex justify-content-between">
                          <p class="card-status">${obj.status} <span class="assignee-name">by ${obj.assignee.username}</span></p>
-                         <p class="due-date-info">must be completed until ${dueDate}</p>
-                         <button class="btn btn-primary" onclick="handleCompleteTask(${obj.id})">Complete</button>
+                         <p class="final-date-info">was completed on ${finalDate}</p>
+                         <button class="btn btn-success btn-sm" onclick="handleCompleteTask(${obj.id})">Complete</button>
                     </div>
-                    <p class="card-title">${obj.title}</p>
+                    <p class="card-title">${obj.title}<span class="due-date-info">must be completed until ${dueDate}</span></p>
                     <p class="card-text">${obj.body}</p>
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-danger" onclick="handleDelete(${obj.id})">Delete</button>
-                        <button onclick="getTaskById(${obj.id})" type="button" class="btn btn-primary"
+                        <button class="btn btn-warning btn-sm" onclick="handleDelete(${obj.id})">Delete</button>
+                        <p class="start-date-info">was created on ${startDate}</p>
+                        <button onclick="getTaskById(${obj.id})" type="button" class="btn btn-success btn-sm"
                         data-bs-toggle="modal" data-bs-target="#task-edit-modal">
                         Edit
                         </button>
@@ -229,7 +238,7 @@ const createTaskCards = (array) => {
     })
 }
 
-const createChildrenList = (array) => {   // ? how to create list of children
+const createChildrenList = (array) => {
     childrenSelect.options.length = 0
 
     array.forEach(obj => {
@@ -249,16 +258,16 @@ function addOption(oListbox, text, value, isDefaultSelected, isSelected)
   oListbox.appendChild(oOption);
 }
 
-function newElement(){  // ?????????????
-    var li = document.createElement('li');
-    var inputValue = document.getElementById('form-control').value;
-    var i = document.createTextNode(inputValue);
-    li.appendChild(i);
-    var date = new Date();
-    var taskDate = date.toLocaleString();
-    var time = document.createTextNode(" " + taskDate);
-    li.appendChild(time);
-}
+//function newElement(){  // ?????????????
+//    var li = document.createElement('li');
+//    var inputValue = document.getElementById('form-control').value;
+//    var i = document.createTextNode(inputValue);
+//    li.appendChild(i);
+//    var date = new Date();
+//    var taskDate = date.toLocaleString();
+//    var time = document.createTextNode(" " + taskDate);
+//    li.appendChild(time);
+//}
 
 
 function handleLogout(){

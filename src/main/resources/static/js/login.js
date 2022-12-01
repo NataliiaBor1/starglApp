@@ -36,6 +36,7 @@ const handleSubmit = async (e) => {
 
     if (response.status === 200) {
         document.cookie = `userId=${responseArr[1]}`
+        document.cookie = `username = ${loginUsername.value}`
         window.location.replace(responseArr[0])
     }
 }

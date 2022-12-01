@@ -17,7 +17,7 @@
 
 .assignee-name{
     color: green;
-    font-size: 9px;
+    font-size: 11px;
 }
 
 .child-background{
@@ -31,5 +31,28 @@
 
 .due-date-info{
     color: green;
-    font-size: 5px;
+    font-size: 9px;
 }
+
+.final-date-info{
+    color: green;
+    font-size: 8px;
+}
+
+.start-date-info{
+    color: green;
+    font-size: 9px;
+}
+
+.card{
+    width: 16rem; height: 16rem;
+    border-radius: 50% 30% / 20 % 40%;
+    border: thick double green;
+}
+
+.button-radius {
+    background: #f0f0f0; /* background color */
+    border: 1px solid black; /* frame */
+    padding: 15px; /* fields around text */
+    margin-bottom: 10px; /* space from bottom */
+   }

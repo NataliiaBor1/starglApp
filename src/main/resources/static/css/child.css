@@ -42,7 +42,7 @@
 }
 
 .card{
-    width: 12rem; height: 12rem;
+    width: 14rem; height: 14rem;
     border-radius: 50% 20% / 10% 40%;
     border: thick double yellow;
 }
@@ -50,5 +50,26 @@
 .nav-link{
     border: solid white;
     border-width: 0 7px;
+}
+
+.assignee-name{
+    color: green;
+    font-size: 11px;
+}
+
+.due-date-info{
+    color: green;
+    font-size: 9px;
+}
+
+.final-date-info{
+    color: green;
+    font-size: 8px;
+}
+
+.start-date-info{
+    color: green;
+    font-size: 9px;
+    line-height: 0.9em;
 }
 

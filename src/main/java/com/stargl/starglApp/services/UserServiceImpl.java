@@ -72,13 +72,6 @@ public class UserServiceImpl implements UserService {
                     response.add("http://localhost:8080/child.html");
                 }
                 response.add(String.valueOf(userOptional.get().getId()));
-
-//                Cookie cookie = new Cookie("  string 1", "string 2");
-//                cookie.setPath("/");
-//                cookie.setMaxAge(86400);
-//                response.add(cookie);   addCookie(cookie);
-//                response.setContentType("text/plain");
-//                return ResponseEntity.ok().body(HttpStatus.OK); ???
             }
             else {
                 response.add("Username or password is incorrect");
