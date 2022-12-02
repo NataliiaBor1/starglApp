@@ -20,3 +20,9 @@ input{
     width: 100px;
 }
 
+.block-login{
+    padding: 10% 0;
+
+    max-width: 30%;
+}
+
