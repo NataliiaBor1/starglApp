@@ -34,11 +34,12 @@
 
 <!--    <main>-->
 <h6>Welcome to Parent page!!!</h6>
+    <div class="h-100">
 <div th:each="task : ${tasks}" class="alert alert-info mt-2">
     <h6 th:text="${task.title}"/>
     <p th:text="${task.body}"/>
 
-    <a  class="btn btn-warning">Details about kids</a>
+    <a  class="btn btn-warning">Add new child</a>
     <a id="logout-btn" class="btn btn-warning" href="/" onclick="handleLogout()">Log out</a>
 
     <div class="container mt-5 mb-5" id="home-container">
@@ -66,9 +67,10 @@
         </div>
     </div>
 </div>
+    </div>
 
-        <div class="px-3 child-background">
-<div class="container mt-5 mb-5">   <!-- "container-md" -->
+        <div class="px-3 description-hidden active">
+<div class="container mt-5 mb-5 block-login">   <!-- "container-md" -->
     <div id="register-add-child" class="ok-status"></div>
     <h3>REGISTER CHILD</h3>
     <form id="register-form">

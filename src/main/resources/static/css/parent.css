@@ -56,3 +56,27 @@
     padding: 15px; /* fields around text */
     margin-bottom: 10px; /* space from bottom */
    }
+
+.block-login{
+       padding: 10% 0;
+
+       max-width: 30%;
+       background: LightCyan;
+}
+
+.description-hidden {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  margin: -50px 0px;
+  padding: 50px 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.description-hidden.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}

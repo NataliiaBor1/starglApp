@@ -11,3 +11,9 @@
     border: solid white;
     border-width: 0 7px;
 }
+
+.block-login{
+    padding: 10% 0;
+
+    max-width: 30%;
+}
