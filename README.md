@@ -7,3 +7,16 @@ page with title of task, its description, start/due/completion dates, status (ST
 Child users can log in by given from parent username and password, see the list of their own tasks with title of task, its description, start/due dates and 
 status (STARTED or DONE). Child users also have achievement board on their personal profile page with amount of "earned" stars.
 
+
+Technologies and software for this project
+
+Spring Boot
+Bootstrap
+HTML, CSS
+Github
+Postman
+IntelliJ IDEA
+
+
+Show your support
+Please ⭐️ this repository if you like this project!
