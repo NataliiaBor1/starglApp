@@ -9,14 +9,22 @@ status (STARTED or DONE). Child users also have achievement board on their perso
 
 
 Technologies and software for this project
+------------------------------------------
 
 Spring Boot
+
 Bootstrap
+
 HTML, CSS
+
 Github
+
 Postman
+
 IntelliJ IDEA
 
 
+
 Show your support
+---------------------------------------------------
 Please ⭐️ this repository if you like this project!
