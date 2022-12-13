@@ -1,6 +1,5 @@
 package com.stargl.starglApp.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.stargl.starglApp.dtos.UserDto;
 import com.stargl.starglApp.enums.Roles;
@@ -38,15 +37,6 @@ public class User {
     @JsonManagedReference
     private Set<Task> taskSetAssigner = new HashSet<>();
 
-//    @ManyToOne
-//    @JsonBackReference
-//    private Role role;
-//
-//    @Column(name = "role_id", nullable = false, unique = false)
-//    @Enumerated(EnumType.ORDINAL)
-//    private String role;
-
-
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Roles role;
@@ -62,12 +52,6 @@ public class User {
     @JoinColumn(name = "PARENT_ID", referencedColumnName = "ID")
     private List<User> children;
 
-//    @Column(name = "parent_id")
-//    private Long parentId;
-//
-//    @Column(name = "children_amount")
-//    private int childrenAmount;
-
 
     public User (UserDto userDto) {
         if (userDto.getUsername() != null) {
@@ -82,7 +66,6 @@ public class User {
         if (userDto.getStarNum() != 0) {
             this.starNum = userDto.getStarNum();
         }
-//        this.parentId = userDto.getParentId();
     }
 
 }

@@ -1,13 +1,10 @@
 package com.stargl.starglApp.controllers;
 
 import com.stargl.starglApp.dtos.TaskDto;
-import com.stargl.starglApp.dtos.UserDto;
-import com.stargl.starglApp.entities.User;
 import com.stargl.starglApp.enums.Statuses;
 import com.stargl.starglApp.repositories.UserRepository;
 import com.stargl.starglApp.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,12 +25,12 @@ public class TaskController {
         return "index";
     }
 
-    @GetMapping("/assigner/{assignerId}")                           // work in postman
+    @GetMapping("/assigner/{assignerId}")
     public List<TaskDto> getTasksByAssigner(@PathVariable Long assignerId) {
         return taskService.getAllTasksByAssignerId(assignerId);
     }
 
-    @GetMapping("/assignee/{assigneeId}")                           // work in postman
+    @GetMapping("/assignee/{assigneeId}")
     public List<TaskDto> getTasksByAssignee(@PathVariable Long assigneeId) {
         return taskService.getAllTasksByAssigneeId(assigneeId);
     }
@@ -43,13 +40,13 @@ public class TaskController {
         return taskService.getTaskById(taskId);
     }
 
-    @PostMapping("/user/{parentId}/{childId}")              // work in Postman
+    @PostMapping("/user/{parentId}/{childId}")
     public void addTask(@RequestBody TaskDto taskDto, @PathVariable Long parentId, @PathVariable Long childId) {
         taskDto.setStatus(Statuses.STARTED);
         taskService.addTask(taskDto, parentId, childId);
     }
 
-    @DeleteMapping("/{taskId}")                                 // work in Postman
+    @DeleteMapping("/{taskId}")
     public void deleteTaskById(@PathVariable Long taskId) {
         taskService.deleteTaskById(taskId);
     }
@@ -59,7 +56,7 @@ public class TaskController {
         return taskService.completeTaskByTaskId(taskId, star);
     }
 
-    @PutMapping                                 // work in Postman
+    @PutMapping
     public void updateTask(@RequestBody TaskDto taskDto) {
         taskService.updateTaskById(taskDto);
     }

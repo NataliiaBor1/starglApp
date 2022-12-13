@@ -1,7 +1,6 @@
 package com.stargl.starglApp.services;
 
 import com.stargl.starglApp.dtos.TaskDto;
-import com.stargl.starglApp.dtos.UserDto;
 import com.stargl.starglApp.entities.Task;
 import com.stargl.starglApp.entities.User;
 import com.stargl.starglApp.enums.Statuses;
@@ -9,7 +8,6 @@ import com.stargl.starglApp.repositories.TaskRepository;
 import com.stargl.starglApp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -54,9 +52,6 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     public void deleteTaskById(Long taskId) {
         Optional<Task> taskOptional = taskRepository.findById(taskId);
-//        taskOptional.ifPresent(task) {
-//            taskRepository.delete(task);
-//         };
         taskOptional.ifPresent(task -> taskRepository.delete(task));
     }
 
@@ -124,5 +119,4 @@ public class TaskServiceImpl implements TaskService {
         }
         return response;
     }
-
 }

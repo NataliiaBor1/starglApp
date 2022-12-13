@@ -2,14 +2,12 @@ package com.stargl.starglApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.stargl.starglApp.dtos.TaskDto;
-import com.stargl.starglApp.enums.Roles;
 import com.stargl.starglApp.enums.Statuses;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity

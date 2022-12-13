@@ -1,9 +1,5 @@
 // Cookie
-//const cookieArr = document.cookie.split("=")
-//const parentId = cookieArr[1]
-//const parentRole =
 const parentId = getCookie('userId');
-//const parentUsername = getCookie('username');
 
 function getCookie(name) {
    var value = "; " + document.cookie;
@@ -15,6 +11,8 @@ const registerForm = document.getElementById('register-form')
 const registerUsername = document.getElementById('register-username')
 const registerPassword = document.getElementById('register-password')
 const childrenSelect = document.getElementById('children-list')
+const addChild = document.getElementById('add-child')
+const closeButton = document.getElementById('close-btn')
 //const  = document.getElementById('"added-task-child-error"')
 //const registerAddChild = document.getElementById('register-add-child')
 
@@ -53,10 +51,6 @@ const handleSubmitAddChild = async (e) =>{       // add child method
     const responseArr = await response.json()
 
     if (response.status === 200) {
-//        registerAddChild.value = responseArr[0]
-//        registerAddChild.innerHTML = `
-//                    <div id="response-add-child">${responseArr[0]} </div>
-//                `
             document.getElementById("register-add-child").innerText = responseArr[0];
             registerUsername.value = "";
             registerPassword.value = "";
@@ -83,7 +77,7 @@ const handleSubmit = async (e) => {
 
 async function addTask(obj) {
     if (childrenSelect.options.length==0) {
-                document.getElementById("added-task-child-error").innerText = "It looks like you do not have kids yet..."; // ????
+                document.getElementById("added-task-child-error").innerText = "It looks like you do not have kids yet...";
                 return ;
          }
 
@@ -97,7 +91,7 @@ async function addTask(obj) {
         .catch(err => console.error(err.message))
 
     if (response.status == 200) {
-            document.getElementById("added-task-child").innerText = "Task is created successfully"; // ????
+            document.getElementById("added-task-child").innerText = "Task is created successfully";
 
             return getTasksByParent(parentId);
     }
@@ -130,7 +124,7 @@ async function getChildrenByParent(parentId) {  // get all list by parent Id
 }
 
 
-async function getTasksByChild(childId) {  //    /assignee/{assigneeId}  // how to get const assigneeId???
+async function getTasksByChild(childId) {
     await fetch(`${baseUrl}tasks/assignee/${childId}`, {
         method: "GET",
         headers: headers
@@ -258,17 +252,6 @@ function addOption(oListbox, text, value, isDefaultSelected, isSelected)
   oListbox.appendChild(oOption);
 }
 
-//function newElement(){  // ?????????????
-//    var li = document.createElement('li');
-//    var inputValue = document.getElementById('form-control').value;
-//    var i = document.createTextNode(inputValue);
-//    li.appendChild(i);
-//    var date = new Date();
-//    var taskDate = date.toLocaleString();
-//    var time = document.createTextNode(" " + taskDate);
-//    li.appendChild(time);
-//}
-
 
 function handleLogout(){
     let c = document.cookie.split(";");
@@ -285,6 +268,21 @@ const populateModal = (obj) =>{
 
 getTasksByParent(parentId);
 getChildrenByParent(parentId);
+
+
+addChild.addEventListener('click', function() {
+
+    let activeBlock = document.querySelector('.description-hidden');
+    activeBlock.classList.add('active');
+    document.getElementById("register-add-child").innerText = "";
+
+})
+
+closeButton.addEventListener('click', function(){
+
+				let activeBlock=document.querySelector('.description-hidden');
+				activeBlock.classList.remove('active');
+});
 
 submitForm.addEventListener("submit", handleSubmit)
 

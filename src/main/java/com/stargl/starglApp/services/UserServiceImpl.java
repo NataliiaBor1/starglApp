@@ -1,15 +1,10 @@
 package com.stargl.starglApp.services;
 
-import com.stargl.starglApp.dtos.TaskDto;
 import com.stargl.starglApp.dtos.UserDto;
-import com.stargl.starglApp.entities.Task;
 import com.stargl.starglApp.entities.User;
 import com.stargl.starglApp.enums.Roles;
 import com.stargl.starglApp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.server.Cookie;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +36,6 @@ public class UserServiceImpl implements UserService {
                 response.add("http://localhost:8080/login.html");
             }
             else {
-//                response.add("http://localhost:8080/parent.html");
                 response.add("You have registered your child successfully");
                 Optional<User> parentOptional = userRepository.findById(userDto.getParentId());
 //                int chilAmount = parent.get().getChildrenAmount();
@@ -65,7 +59,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> userOptional = userRepository.findByUsername(userDto.getUsername());
         if (userOptional.isPresent()) {
             if (passwordEncoder.matches(userDto.getPassword(), userOptional.get().getPassword())) {
-                if (userOptional.get().getRole().equals(Roles.PARENT)) {  // save username and role
+                if (userOptional.get().getRole().equals(Roles.PARENT)) {
                     response.add("http://localhost:8080/parent.html");
                 }
                 else {
@@ -84,7 +78,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getAllChildrenByUserId(Long parentId) {   // work in postman
+    public List<UserDto> getAllChildrenByUserId(Long parentId) {
         Optional<User> userOptional = userRepository.findById(parentId);
         if (userOptional.isPresent()) {
             List<User> childrenList = userRepository.findAllByParentEquals(userOptional.get());

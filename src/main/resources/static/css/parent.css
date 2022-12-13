@@ -58,9 +58,6 @@
    }
 
 .block-login{
-       padding: 10% 0;
-
-       max-width: 30%;
        background: LightCyan;
 }
 
@@ -73,10 +70,26 @@
   padding: 50px 0px;
   width: 100%;
   height: 100%;
+  justify-content:center;
 }
 
 .description-hidden.active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.add-child{
+    background: LightCyan;
+    border: 10px solid #ece89d;
+   max-width: 30%;
+    margin: 3% 0;
+    display: flex;
+    flex-direction:column;
+    //justify-content:center;
+}
+
+.add-child-row{
+    display:flex;
+    justify-content:flex-end;
 }
