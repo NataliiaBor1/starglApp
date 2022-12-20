@@ -10,6 +10,7 @@ status (STARTED or DONE). Child users also have achievement board on their perso
 
 Technologies and software for this project
 ------------------------------------------
+Java, JavaScript
 
 Spring Boot
 
