@@ -1,15 +1,11 @@
 package com.stargl.starglApp.dtos;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.stargl.starglApp.entities.Task;
 import com.stargl.starglApp.entities.User;
 import com.stargl.starglApp.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -51,8 +47,6 @@ public class UserDto implements Serializable {
         if (user.getStarNum() != 0) {
             this.starNum = user.getStarNum();
         }
-//        this.parentId = user.getParentId();
-
     }
 
 

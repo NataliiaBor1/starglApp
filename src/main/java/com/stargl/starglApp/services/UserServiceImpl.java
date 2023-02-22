@@ -38,10 +38,6 @@ public class UserServiceImpl implements UserService {
             else {
                 response.add("You have registered your child successfully");
                 Optional<User> parentOptional = userRepository.findById(userDto.getParentId());
-//                int chilAmount = parent.get().getChildrenAmount();
-//                chilAmount += 1;
-//                parent.get().setChildrenAmount(chilAmount);
-//                parent.ifPresent(user::setParent);
                 user.setParent(parentOptional.get());
                 userRepository.save(user);
             }

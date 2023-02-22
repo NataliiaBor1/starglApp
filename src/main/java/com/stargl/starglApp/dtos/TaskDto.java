@@ -1,21 +1,13 @@
 package com.stargl.starglApp.dtos;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.stargl.starglApp.entities.Task;
-import com.stargl.starglApp.entities.User;
 import com.stargl.starglApp.enums.Statuses;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -41,7 +33,6 @@ public class TaskDto implements Serializable {
 
     private LocalDateTime dueDate;
 
-//    private LocalDateTime date;
 
     public TaskDto(Task task) {
         if (task.getId() != null) {

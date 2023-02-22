@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
 
     List<User> findAllByParentEquals(User user);
+
+//    default String defaultMethod() {return null;};
 }

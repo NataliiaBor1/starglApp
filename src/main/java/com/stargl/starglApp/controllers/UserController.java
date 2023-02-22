@@ -8,9 +8,6 @@ import com.stargl.starglApp.repositories.TaskRepository;
 import com.stargl.starglApp.repositories.UserRepository;
 import com.stargl.starglApp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.server.Cookie;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,10 +46,9 @@ public class UserController {
         return userService.registerUser(userDto);
     }
 
-    @PostMapping("/login")  //  work  in Postman
+    @PostMapping("/login")
     public List<String> userLogin(@RequestBody UserDto userDto) {
         List<String> response = new ArrayList<>();
-        // save username and role like cookies ???
         return userService.userLogin(userDto);
     }
 

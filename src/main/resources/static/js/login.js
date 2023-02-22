@@ -45,7 +45,7 @@ function identifyRole(role) {
 if (role === 'CHILD'){
     registerBtn.classList.add('disabled');
   }else{
-    registerBtn.classList.remove('disabled');  // classList.remove('disabled')
+    registerBtn.classList.remove('disabled');
   }
 }
 
